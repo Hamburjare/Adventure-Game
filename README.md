@@ -1,6 +1,5 @@
-# Tappy Plane
+# Adventure Game
 ## Introduction
-Tappy Plane is copy of Flappy Bird
 
 ## Packages used in project
 
