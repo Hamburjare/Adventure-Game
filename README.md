@@ -7,9 +7,6 @@
 
 ## Features
 
-- Login system made with PlayerPrefs
-- Each user has their own highscore and then you can see what is all time high score which includes all users who is logged in
-- Input system for keyboard, gamepad and touch controls
 
 ## Setup
 
