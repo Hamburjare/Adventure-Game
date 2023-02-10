@@ -12,7 +12,8 @@ public class SwordController : MonoBehaviour
         {
             // other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damageAmount_);
             AudioManager.instance.Play("SwordHit");
-            Player.Instance.AddXp(m_damageAmount);
+            GameManager.Instance.RemoveSpiderHealth(m_damageAmount);
+            GameManager.Instance.AddXp(m_damageAmount);
         }
     }
 }
