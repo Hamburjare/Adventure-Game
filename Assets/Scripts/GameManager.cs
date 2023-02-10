@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int m_heroMaxHealth = 5;
 
+    public static int s_heroMaxHealth { get; private set; }
+
     [SerializeField]
     int m_spiderMaxHealth = 20;
 

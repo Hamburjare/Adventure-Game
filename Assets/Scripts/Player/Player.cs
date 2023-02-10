@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
     {
         // playerNickname.text = Login.nickname;
         LoadPlayerDataFromJSON();
+        if (GameManager.s_heroHealth <= 0)
+        {
+            GameManager.s_heroHealth = GameManager.s_heroMaxHealth;
+        }
         GameManager.Instance.UpdateHealthUI();
         GameManager.Instance.UpdateLvlUI();
     }
