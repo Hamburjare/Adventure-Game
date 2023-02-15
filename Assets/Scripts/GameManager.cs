@@ -65,9 +65,11 @@ public class GameManager : MonoBehaviour
     public void UpdateHealthUI()
     {
         // Jos pelaajan terveyspisteet ovat pienemmät kuin 0, niin asetetaan ne 0:ksi
-        if (s_heroHealth <= 0)
+        if (s_heroHealth <= 0 && !s_isHeroDead)
         {
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            s_heroHealth = 0;
+            AudioManager.instance.Play("GameOver");
             HeroDead();
         }
 
@@ -115,7 +117,7 @@ public class GameManager : MonoBehaviour
     public void RemoveSpiderHealth(int amount)
     {
         m_spiderHealth -= amount;
-        if (m_spiderHealth <= 0)
+        if (m_spiderHealth <= 0 && !s_isSpiderDead)
         {
             SpiderDead();
         }

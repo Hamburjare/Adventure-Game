@@ -51,7 +51,7 @@ public class SpiderController : MonoBehaviour
 
         if (
             Vector3.Distance(player.position, transform.position) < CHASE_DISTANCE
-            && !GameManager.s_isSpiderDead
+            && !GameManager.s_isSpiderDead && !GameManager.s_isHeroDead
         )
         {
             HandleAnimationMovementInArea();
@@ -71,14 +71,14 @@ public class SpiderController : MonoBehaviour
         );
         spiderAnimator.SetBool("isIdle", false);
 
-        if (direction.magnitude > ATTACK_DISTANCE)
+        if (direction.magnitude > ATTACK_DISTANCE && !GameManager.s_isHeroDead)
         {
             transform.Translate(0, 0, spiderWalkSpeed * Time.deltaTime);
             spiderAnimator.SetBool("isWalking", true);
             spiderAnimator.SetBool("isAttacking", false);
             spiderState = SpiderState.Walk;
         }
-        else
+        else if (!GameManager.s_isHeroDead)
         {
             spiderAnimator.SetBool("isWalking", false);
             spiderAnimator.SetBool("isAttacking", true);
@@ -101,8 +101,15 @@ public class SpiderController : MonoBehaviour
 
     public void ShootPoison()
     {
+        if (GameManager.s_isHeroDead)
+            return;
+
         /* The above code is instantiating the poison prefab at the shooting position. */
-        GameObject poisonClone = Instantiate(poisonPrefab, shootingPosition.position, shootingPosition.rotation);
+        GameObject poisonClone = Instantiate(
+            poisonPrefab,
+            shootingPosition.position,
+            shootingPosition.rotation
+        );
         Destroy(poisonClone, 1.0f);
 
         AudioManager.instance.Play("SpiderHit");

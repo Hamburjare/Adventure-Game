@@ -213,6 +213,10 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (GameManager.s_isHeroDead)
+            {
+                return;
+            }
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
