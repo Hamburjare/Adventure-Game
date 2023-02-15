@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnMeleeAttack(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && !GameManager.s_isHeroDead)
         {
             MeleeAttack();
         }
@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnRangedAttack(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && !GameManager.s_isHeroDead)
         {
             RangedAttack();
         }

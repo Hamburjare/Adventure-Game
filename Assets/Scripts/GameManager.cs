@@ -21,7 +21,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int m_spiderMaxHealth = 20;
 
-    public static int s_heroHealth;
+    [SerializeField]
+    public static bool s_isSpiderDead = false;
+
+    public static int s_heroHealth = 5;
+
+    public static bool s_isHeroDead = false;
 
     [SerializeField]
     int m_spiderHealth;
@@ -55,13 +60,6 @@ public class GameManager : MonoBehaviour
         m_spiderHealth = m_spiderMaxHealth;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RemoveHeroHealth(1);
-        }
-    }
 
     // Pelaajan terveyspisteiden muuttaminen UIssa
     public void UpdateHealthUI()
@@ -125,12 +123,15 @@ public class GameManager : MonoBehaviour
 
     void HeroDead()
     {
+        s_isHeroDead = true;
+        hero.GetComponent<Animator>().SetTrigger("Die");
         m_winPanel[0].SetActive(true);
         s_heroHealth = 0;
     }
 
     void SpiderDead()
     {
+        s_isSpiderDead = true;
         spider.GetComponent<Animator>().enabled = false;
         m_winPanel[1].SetActive(true);
         m_spiderHealth = 0;
